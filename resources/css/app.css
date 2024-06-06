@@ -1,3 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+*{
+    transition: all .3s linear;
+    font-family: 'SourceSansPro', sans-serif;
+}
+
+.gradient {
+    background: linear-gradient(90deg, #00c471 0%, #daae51 100%);
+}
+
+@media (max-width: 768px) {
+    [data-aos] {
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+#customers, #pricing {
+    scroll-margin-top: 100px;
+}
+
+img {
+    user-select: none;
+    user-drag: none;
+    pointer-events: none;
+}
+
+.navlinks {
+    @apply text-base font-medium text-gray-900 transition-all duration-200 rounded focus:outline-none hover:text-opacity-50 hover:focus:ring-1 focus:ring-gray-900 focus:ring-offset-2;
+}
+
+.navbtn {
+    @apply inline-flex items-center justify-center px-5 py-2 text-base font-bold leading-7 text-white transition-all duration-200 bg-green-500 border border-transparent rounded-xl hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900;
+}

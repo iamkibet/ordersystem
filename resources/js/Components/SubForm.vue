@@ -1,6 +1,7 @@
 <template>
     <section class="relative grid">
-        <form @submit.prevent="saveToLocal" style="z-index: 3;" class="max-w-xs mt-6 p-2 lg:px-4 bg-white rounded-xl shadow shadow-purple-200 text-xs relative">
+        <form @submit.prevent="saveToLocal" style="z-index: 3;"
+            class="max-w-xs mt-6 p-2 lg:px-4 bg-white rounded-xl shadow shadow-purple-200 text-xs relative">
             <p class="font-bold text-slate-800 text-xl">Calculate Price</p>
 
             <div class="mt-2">
@@ -8,19 +9,15 @@
                     Enter your Title/Topic <span class="text-red-500">* required</span>
                 </label><br>
                 <input type="text"
-                       class="border-1 p-1 w-full text-sm border-gray-200 bg-slate-100 leading-none rounded-sm"
-                       v-model="form.title"
-                       ref="titleInput"
-                       name="title" id="title"
-                       placeholder="Leave blank to use Writer's Choice" required>
+                    class="border-1 p-1 w-full text-sm border-gray-200 bg-slate-100 leading-none rounded-sm"
+                    v-model="form.title" ref="titleInput" name="title" id="title"
+                    placeholder="Leave blank to use Writer's Choice" required>
             </div>
             <!--Service TYpes-->
             <div class="mt-2">
-                <select id="service_type"
-                        v-model="form.service_type_id"
-                        @change="getPrice"
-                        class="w-full rounded-lg leading-none border-gray-200 bg-slate-100 text-gray-900"
-                        name="service_type" autofocus>
+                <select id="service_type" v-model="form.service_type_id" @change="getPrice"
+                    class="w-full rounded-lg leading-none border-gray-200 bg-slate-100 text-gray-900"
+                    name="service_type" autofocus>
                     <option disabled value="">Select type of service</option>
                     <option v-for="service in services" :value="service.id">{{ service.name }}</option>
                 </select>
@@ -29,22 +26,18 @@
             <div class="flex gap-x-3 mt-1">
                 <!--Academic Level-->
                 <div class="mt-1">
-                    <select id="academic_level"
-                            v-model="form.academic_level_id"
-                            @change="getPrice"
-                            class="w-full rounded-lg border-gray-200 bg-slate-100 leading-none text-gray-900"
-                            name="academic_level" autofocus>
+                    <select id="academic_level" v-model="form.academic_level_id" @change="getPrice"
+                        class="w-full rounded-lg border-gray-200 bg-slate-100 leading-none text-gray-900"
+                        name="academic_level" autofocus>
                         <option disabled value="">Select your school level</option>
                         <option v-for="level in levels" :value="level.id">{{ level.name }}</option>
                     </select>
                 </div>
                 <!--Deadline-->
                 <div class="mt-2">
-                    <select id="deadline"
-                            v-model="form.deadline"
-                            @change="getPrice"
-                            class="w-full rounded-lg border-gray-200 leading-none bg-slate-100 text-gray-900"
-                            name="deadline" autofocus>
+                    <select id="deadline" v-model="form.deadline" @change="getPrice"
+                        class="w-full rounded-lg border-gray-200 leading-none bg-slate-100 text-gray-900"
+                        name="deadline" autofocus>
                         <option disabled value="">Select the deadline</option>
                         <option v-for="rate in rates" :value="rate.hours">{{ rate.name }}</option>
                     </select>
@@ -54,30 +47,34 @@
             <!--Pages-->
             <div class="mt-2">
 
-                    <select id="pages"
-                            v-model="form.pages"
-                            @change="getPrice"
-                            class="w-full border-gray-200 rounded-lg leading-none bg-slate-100 text-gray-900"
-                            name="pages" autofocus>
-                        <option disabled value="">Select number of Pages</option>
-                        <option :value="0">0 Pages/ 0 words</option>
-                        <option v-for="page in 200" :key="page" :value="page">{{ page }} page(s) / {{ page * 275 }} words</option>
-                    </select>
-                </div>
+                <select id="pages" v-model="form.pages" @change="getPrice"
+                    class="w-full border-gray-200 rounded-lg leading-none bg-slate-100 text-gray-900" name="pages"
+                    autofocus>
+                    <option disabled value="">Select number of Pages</option>
+                    <option :value="0">0 Pages/ 0 words</option>
+                    <option v-for="page in 200" :key="page" :value="page">{{ page }} page(s) / {{ page * 275 }} words
+                    </option>
+                </select>
+            </div>
 
             <!--price-->
             <div class="mt-2">
-                <p class="text-sm text-gray-700 text-right p-1">Price: <span class="px-1 underline underline-offset-4 font-bold italic text-lg text-purple-900">${{ amount }}</span></p>
+                <p class="text-sm text-gray-700 text-right p-1">Price: <span
+                        class="px-1 underline underline-offset-4 font-bold italic text-lg text-purple-900">${{ amount
+                        }}</span></p>
             </div>
 
-            <button type="submit" class="mt-4 mx-auto mb-4 p-2 w-full bg-purple-600 hover:bg-purple-700 text-slate-50 rounded-md text-base place-content-center font-bold font-serif flex flex-row">
+            <button type="submit"
+                class="mt-4 mx-auto mb-4 p-2 w-full bg-[#00c471] text-white rounded-md text-base place-content-center font-bold font-serif flex flex-row">
                 Order Now >
                 <span id="blinking-cursor" class="text-sm pl-1">|</span>
             </button>
 
         </form>
-            <div class="absolute inset-0 shadow-sm ml-4 mt-5 -mr-6 bg-purple-50 h-[105%] max-w-xs rounded-2xl" style="z-index: 2;"></div>
-            <div class="absolute inset-0 shadow-sm ml-8 mt-16 -mr-12 bg-purple-100 border border-purple-200 h-[102%] max-w-xs rounded-2xl" style="z-index: 1;"></div>
+        <div class="absolute inset-0 shadow-sm ml-4 mt-5 -mr-6 bg-purple-50 h-[105%] max-w-xs rounded-2xl"
+            style="z-index: 2;"></div>
+        <div class="absolute inset-0 shadow-sm ml-8 mt-16 -mr-12 bg-purple-100 border border-purple-200 h-[102%] max-w-xs rounded-2xl"
+            style="z-index: 1;"></div>
     </section>
 </template>
 
